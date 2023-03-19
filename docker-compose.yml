@@ -20,7 +20,7 @@ services:
       - ./backend:/backend
     depends_on:
       - tmp_nest_graphql_db
-    # command: yarn start:dev
+    command: yarn start:dev
 
   tmp_nest_graphql_db:
     container_name: tmp_nest_graphql_db
