@@ -1,2 +1,8 @@
 # Github
 .commit
+
+# Env
+.env
+
+# MySQL
+my.cnf
