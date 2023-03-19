@@ -1,6 +1,27 @@
 version: "3.9"
 
 services:
+  tmp_nest_graphql_server:
+    container_name: tmp_nest_graphql_server
+    build:
+      context: .
+      dockerfile: ./docker/backend/Dockerfile
+    tty: true
+    ports:
+      - 3000:3000
+    environment:
+      - MYSQL_HOST=${MYSQL_HOST}
+      - MYSQL_PORT=${MYSQL_PORT}
+      - MYSQL_DATABASE=${MYSQL_DATABASE}
+      - MYSQL_USER=${MYSQL_USER}
+      - MYSQL_PASSWORD=${MYSQL_PASSWORD}
+      - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
+    volumes:
+      - ./backend:/backend
+    depends_on:
+      - tmp_nest_graphql_db
+    # command: yarn start:dev
+
   tmp_nest_graphql_db:
     container_name: tmp_nest_graphql_db
     image: mysql:8.0
