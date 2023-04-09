@@ -25,6 +25,5 @@
 
 ## Versions
 
-- Docker: v3.9
 - Node.js: v18.10.0
-- NestJS: v9.3.0
+- NestJS: v9.0.0
