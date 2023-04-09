@@ -12,3 +12,20 @@ services:
     volumes:
       - ./backend:/backend
     command: yarn start:dev
+
+  tmp_nest_graphql_db:
+    container_name: tmp_nest_graphql_db
+    image: postgres:15-alpine
+    ports:
+      - 5432:5432
+    volumes:
+      - ./db/init.d:/docker-entrypoint-initdb.d
+      - ./db/pgdata:/var/lib/postgresql/data
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      POSTGRES_INITDB_ARGS: ${POSTGRES_INITDB_ARGS}
+      POSTGRES_DB: ${POSTGRES_DB}
+    hostname: postgres
+    restart: always
+    user: root
