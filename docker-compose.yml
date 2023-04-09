@@ -10,32 +10,47 @@ services:
     ports:
       - 3000:3000
     environment:
-      - MYSQL_HOST=${MYSQL_HOST}
-      - MYSQL_PORT=${MYSQL_PORT}
-      - MYSQL_DATABASE=${MYSQL_DATABASE}
-      - MYSQL_USER=${MYSQL_USER}
-      - MYSQL_PASSWORD=${MYSQL_PASSWORD}
-      - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
+      - POSTGRES_HOST=${POSTGRES_HOST}
+      - POSTGRES_DB=${POSTGRES_DB}
+      - POSTGRES_USER=${POSTGRES_USER}
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
     volumes:
       - ./backend:/backend
     depends_on:
       - tmp_nest_graphql_db
-    command: yarn start:dev
+    # command: yarn start:dev
 
   tmp_nest_graphql_db:
     container_name: tmp_nest_graphql_db
-    image: mysql:8.0
+    image: postgres:14
+    restart: always
     ports:
-      - 3306:3306
-    environment:
-      - MYSQL_DATABASE=${MYSQL_DATABASE}
-      - MYSQL_USER=${MYSQL_USER}
-      - MYSQL_PASSWORD=${MYSQL_PASSWORD}
-      - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
-      - TZ='Asia/Tokyo'
+      - ${POSTGRES_PORT}:5432
     volumes:
-      - tmp_nest_graphql_data:/var/lib/mysql
-      - ./my.cnf:/etc/mysql/conf.d/my.cnf
+      - ./db/postgres/data:/var/lib/postgresql/data
+      - ./db/postgres/initdb:/docker-entrypoint-initdb.d
+    environment:
+      - POSTGRES_HOST=${POSTGRES_HOST}
+      - POSTGRES_DB=${POSTGRES_DB}
+      - POSTGRES_USER=${POSTGRES_USER}
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
+      - TZ=Asia/Tokyo
+
+  tmp_nest_graphql_pgadmin:
+    container_name: tmp_nest_graphql_pgadmin
+    image: dpage/pgadmin4:4.2
+    ports:
+      - "8000:80"
+    volumes:
+      - ./db/pgadmin4:/var/lib/pgadmin
+    environment:
+      - PGADMIN_DEFAULT_EMAIL=${PGADMIN_DEFAULT_EMAIL}
+      - PGADMIN_DEFAULT_PASSWORD={PGADMIN_DEFAULT_PASSWORD}
+    hostname: pgadmin4
+    links:
+      - tmp_nest_graphql_db
+    restart: always
 
 volumes:
-  tmp_nest_graphql_data:
+  postgres:
+    driver: local
