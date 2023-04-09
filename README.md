@@ -26,4 +26,4 @@
 ## Versions
 
 - Node.js: v18.10.0
-- NestJS: v9.0.0
+- NestJS: v9.3.0
