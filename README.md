@@ -28,4 +28,3 @@
 - Docker: v3.9
 - Node.js: v18.10.0
 - NestJS: v9.3.0
-- MySQL: v8.0
