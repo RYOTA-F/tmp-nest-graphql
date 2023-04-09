@@ -2,7 +2,25 @@
 
 ## Setup
 
-- .env file edit
+### Docker env
+
+1. `.env` file copy
+
+```
+cp .env.example .env
+```
+
+2. `.env` file edit
+
+### Prisma env
+
+1. `.env` file copy
+
+```
+cp ./backend/.env.example ./backend/.env
+```
+
+2. `.env` file edit
 
 ### yarn install
 
@@ -40,3 +58,4 @@ http://localhost:5555/
 
 - Node.js: v18.10.0
 - NestJS: v9.3.0
+- Prisma: v4.12.0
