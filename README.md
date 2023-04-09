@@ -2,13 +2,6 @@
 
 ## Setup
 
-- ENV
-  - .env file Copy
-
-```sh
-% cp .env.example .env
-```
-
 - .env file edit
 
 - Yarn Install
@@ -21,6 +14,12 @@
 
 ```sh
 % docker-compose up -d
+```
+
+## Playground
+
+```
+http://localhost:3001/graphql
 ```
 
 ## Versions

@@ -8,7 +8,7 @@ services:
       dockerfile: ./backend/Dockerfile
     tty: true
     ports:
-      - 3000:3000
+      - 3001:3000
     volumes:
       - ./backend:/backend
     command: yarn start:dev
