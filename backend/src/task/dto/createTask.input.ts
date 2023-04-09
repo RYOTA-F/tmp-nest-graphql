@@ -11,6 +11,6 @@ export class CreateTaskInput {
   @IsDateString()
   duDate: string
 
-  @Field({ nullable: true })
-  description?: string
+  @Field()
+  description: string
 }

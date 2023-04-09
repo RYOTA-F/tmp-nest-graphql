@@ -12,6 +12,8 @@ query {
     duDate
     status
     description
+    createdAt
+    updatedAt
   }
 }
 ```
@@ -28,6 +30,8 @@ mutation createTask($createTaskInput: CreateTaskInput!) {
     duDate
     status
     description
+    createdAt
+    updatedAt
   }
 }
 ```
@@ -38,7 +42,8 @@ mutation createTask($createTaskInput: CreateTaskInput!) {
 {
   "createTaskInput": {
     "name": "Test Task 1",
-    "duDate": "2023-04-11"
+    "duDate": "2023-04-01",
+    "description": "this is test"
   }
 }
 ```
