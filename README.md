@@ -2,19 +2,36 @@
 
 ## Setup
 
-- ENV
-  - .env file Copy
+### Docker env
 
-```sh
-% cp .env.example .env
+1. `.env` file copy
+
+```
+cp .env.example .env
 ```
 
-- .env file edit
+2. `.env` file edit
 
-- Yarn Install
+### Prisma env
+
+1. `.env` file copy
+
+```
+cp ./backend/.env.example ./backend/.env
+```
+
+2. `.env` file edit
+
+### yarn install
 
 ```sh
 % docker-compose run --rm tmp_nest_graphql_server yarn install
+```
+
+### migration run
+
+```sh
+% docker-compose run --rm tmp_nest_graphql_server npx prisma migrate dev --name init
 ```
 
 ## Run
@@ -23,9 +40,22 @@
 % docker-compose up -d
 ```
 
+## URL
+
+### GraphQL Playground
+
+```
+http://localhost:3001/graphql
+```
+
+### Prisma Studio
+
+```
+http://localhost:5555/
+```
+
 ## Versions
 
-- Docker: v3.9
 - Node.js: v18.10.0
 - NestJS: v9.3.0
-- MySQL: v8.0
+- Prisma: v4.12.0

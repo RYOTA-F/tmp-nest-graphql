@@ -1,8 +1,5 @@
-# Github
-.commit
-
-# Env
 .env
 
-# Postgres
-db/
+db
+
+.commit

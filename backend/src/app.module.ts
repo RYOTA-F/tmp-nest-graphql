@@ -1,27 +1,21 @@
 import { Module } from '@nestjs/common'
-import { TypeOrmModule } from '@nestjs/typeorm'
-import { ConfigModule, ConfigService } from '@nestjs/config'
-import { AppController } from './app.controller'
-import { AppService } from './app.service'
+import { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo'
+import { GraphQLModule } from '@nestjs/graphql'
+import { join } from 'path'
+import { TaskModule } from './task/task.module';
+import { PrismaModule } from './prisma/prisma.module';
 
 @Module({
   imports: [
-    TypeOrmModule.forRootAsync({
-      imports: [ConfigModule],
-      inject: [ConfigService],
-      useFactory: (configService: ConfigService) => ({
-        type: 'postgres',
-        host: configService.get('POSTGRES_HOST'),
-        port: configService.get('POSTGRES_PORT'),
-        username: configService.get('POSTGRES_USER'),
-        password: configService.get('POSTGRES_PASSWORD'),
-        database: configService.get('POSTGRES_DB'),
-        entities: [],
-        synchronize: true,
-      }),
+    GraphQLModule.forRoot<ApolloDriverConfig>({
+      driver: ApolloDriver,
+      playground: true,
+      autoSchemaFile: join(process.cwd(), 'src/schema.gql'),
     }),
+    TaskModule,
+    PrismaModule,
   ],
-  controllers: [AppController],
-  providers: [AppService],
+  controllers: [],
+  providers: [],
 })
 export class AppModule {}
