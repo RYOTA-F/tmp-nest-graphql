@@ -4,10 +4,16 @@
 
 - .env file edit
 
-- Yarn Install
+### yarn install
 
 ```sh
 % docker-compose run --rm tmp_nest_graphql_server yarn install
+```
+
+### migration run
+
+```sh
+% docker-compose run --rm tmp_nest_graphql_server npx prisma migrate dev --name init
 ```
 
 ## Run
@@ -16,10 +22,18 @@
 % docker-compose up -d
 ```
 
-## Playground
+## URL
+
+### GraphQL Playground
 
 ```
 http://localhost:3001/graphql
+```
+
+### Prisma Studio
+
+```
+http://localhost:5555/
 ```
 
 ## Versions
