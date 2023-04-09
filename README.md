@@ -1,4 +1,8 @@
-# Tmp: NestJS × GraphQL
+# Template: NestJS × PostgreSQL × Prisma × GraphQL
+
+## About
+
+GraphQL API ベースのバックエンドテンプレートです。
 
 ## Setup
 
